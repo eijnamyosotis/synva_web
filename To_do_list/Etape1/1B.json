@@ -1,0 +1,26 @@
+{
+  "priorites":[
+    {"idPriorite":1,"priorite":"Importante"},
+    {"idPriorite":2,"priorite":"Moyenne"},
+    {"idPriorite":3,"priorite":"Peu importante"},
+    {"idPriorite":4,"priorite":"Optionnelle"}
+  ],
+  "statuts":[
+    {"idStatut":1,"statut":"En attente"},
+    {"idStatut":2,"statut":"En cours"},
+    {"idStatut":3,"statut":"Terminée"},
+    {"idStatut":4,"statut":"Annulée"}
+  ],
+  "categories":[
+    {"idCategorie":1,"categorie":"Travail"},
+    {"idCategorie":2,"categorie":"Maison"},
+    {"idCategorie":3,"categorie":"Études"},
+    {"idCategorie":4,"categorie":"Loisirs"}
+  ],
+  "efforts":[
+    {"idEffort":1,"effort":"15 min"},
+    {"idEffort":2,"effort":"1 h"},
+    {"idEffort":3,"effort":"2 h"},
+    {"idEffort":4,"effort":"Plus de 3 h"}
+  ]
+}

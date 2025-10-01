@@ -1,0 +1,8 @@
+{
+    "idTache":1,
+    "libelle":"Faire les courses",
+    "description":"Acheter : Carottes, Lentilles, Pain",
+    "dateCreation":"2025-09-16",
+    "dateEcheance":"2025-09-20",
+    "localisation":"Marché"
+}

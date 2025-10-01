@@ -1,0 +1,38 @@
+[
+        {
+                "idTache": 1,
+                "libelle": "Réviser le cours de JavaScript",
+                "description": "Revoir les concepts de base et faire les exercices",
+                "dateCreation": "2024-01-15",
+                "dateEcheance": "2024-01-20",
+                "localisation": "A distance",
+                "idStatut": 2,
+                "idPriorite": 2,
+                "idCategorie": 3,
+                "idEffort": 3
+        },
+        {
+                "idTache": 2,
+                "libelle": "Faire les courses",
+                "description": "Acheter les ingrédients pour le dîner de demain",
+                "dateCreation": "2024-01-16",
+                "dateEcheance": "2024-01-17",
+                "localisation": "Au marché",
+                "idStatut": 1,
+                "idPriorite": 3,
+                "idCategorie": 2,
+                "idEffort": 1
+        },
+        {
+                "idTache": 3,
+                "libelle": "Préparer présentation projet",
+                "description": "Créer les slides et répéter la présentation",
+                "dateCreation": "2024-01-14",
+                "dateEcheance": "2024-01-22",
+                "localisation": "Studium",
+                "idStatut": 2,
+                "idPriorite": 1,
+                "idCategorie": 1,
+                "idEffort": 4
+        }
+]
