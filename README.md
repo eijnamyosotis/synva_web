@@ -1,3 +1,5 @@
+GROUPE 4 - Charlie Dranebois, Daria Korotaeva, Islam Oueslati et Oumaima Sarim
+
 Etape N1 : la structure des données au format JSON 
 
 Déterminez les « propriétés » qui caractérisent une tâche, en plus du titre (ou libellé) de la tâche, indépendamment de sa priorité pour l'instant. Quelles autres propriétés pouvez vous imaginer?
