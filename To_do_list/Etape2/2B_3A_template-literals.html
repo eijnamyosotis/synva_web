@@ -139,6 +139,33 @@
                         dynamicWritingDifficulte();
                 }
         };
+                
+        function dynamicWritingStatut(){
+            listeStatuts.forEach(function(item, index){
+                var option=`<option value="${item.idStatut}">${item.statut}</option>`;
+                    document.getElementById("statut").insertAdjacentHTML('beforeend',option);
+            });
+        };
+        function dynamicWritingPriorite(){
+            listePriorites.forEach(function(item, index){
+                var option=`<option value="${item.idPriorite}">${item.priorite}</option>`;
+                    document.getElementById("priorite").insertAdjacentHTML('beforeend',option);
+            });
+        };
+
+        function dynamicWritingCategorie() {
+            listeCategories.forEach (function (item, index) {
+                var option = `<option value="${item.idCategorie}">${item.categorie}</option>`;
+                document.getElementById("categorie").insertAdjacentHTML('beforeend', option);
+            });
+        };
+
+        function dynamicWritingDifficulte(){
+            listeDifficulte.forEach (function(item, index){
+                var option= `<option value="${item.idDifficulte}">${item.difficulte}</option>`;
+                document.getElementById("difficulte").insertAdjacentHTML('beforeend', option);
+            });
+        };
     </script>
 </head>
 <body>
@@ -185,14 +212,6 @@
                     <label for="statut">Statut</label>
                     <select id="statut" name="statut" required>
                         <option value="">-- Choisir --</option>
-                        <script>
-                            function dynamicWritingStatut(){
-                                listeStatuts.forEach(function(item, index){
-                                    var option=`<option value="${item.idStatut}">${item.statut}</option>`;
-                                    document.getElementById("statut").insertAdjacentHTML('beforeend',option);
-                                });
-                            }
-                        </script>
                     </select>
                 </div>
 
@@ -200,14 +219,6 @@
                     <label for="priorite">Priorité</label>
                     <select id="priorite" name="priorite" required>
                         <option value="">-- Choisir --</option>
-                        <script>
-                            function dynamicWritingPriorite(){
-                                listePriorites.forEach(function(item, index){
-                                    var option=`<option value="${item.idPriorite}">${item.priorite}</option>`;
-                                    document.getElementById("priorite").insertAdjacentHTML('beforeend',option);
-                        });
-                    }
-                        </script>
                     </select>
                 </div>
             </div>
@@ -218,15 +229,6 @@
                     <label for="categorie">Catégorie</label>
                     <select id="categorie" name="categorie" required>
                         <option value="">--Choisir--</option>
-                        <script>
-                            function dynamicWritingCategorie() {
-                                listeCategories.forEach (function (item, index) {
-                                   var option = `<option value="${item.idCategorie}">${item.categorie}</option>`;
-                                    document.getElementById("categorie").insertAdjacentHTML('beforeend', option);
-                                });
-                            }  
-       
-                        </script>
                     </select>
  
                 </div>
@@ -235,15 +237,6 @@
                     <label for="difficulte">Difficulté</label>
                     <select id="difficulte" name="difficulte" required>
                         <option value="">--Choisir--</option>
-                        <script>
-                            function dynamicWritingDifficulte(){
-                                listeDifficulte.forEach (function(item, index){
-                                    var option= `<option value="${item.idDifficulte}">${item.difficulte}</option>`;
-                                    document.getElementById("difficulte").insertAdjacentHTML('beforeend', option);
-                                });
-                            }  
-       
-                        </script>
                     </select>
                 </div>
             </div>
