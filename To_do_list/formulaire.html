@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Tâche</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Ma To Do Liste ✨ </h1>
+            <p class="subtitle">Organisez votre journée avec style</p>
+        </header>
+
+         
+        
+        <form>
+            <div class="form-group">
+                <label for="nom-tache">Nom de la tâche</label>
+                <input type="text" id="nom-tache" name="nom-tache" placeholder="Ex: Réunion d'équipe" required>
+            </div>
+
+             
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date-debut">Date de création</label>
+                    <input type="date" id="date-debut" name="date-debut" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-fin">Date d'échéance</label>
+                    <input type="date" id="date-fin" name="date-fin" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lieu">Lieu</label>
+                <input type="text" id="lieu" name="lieu" placeholder="Ex: Bureau, Maison, En ligne">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Décrivez votre tâche en détail..."></textarea>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="statut">Statut</label>
+                    <select id="statut" name="statut">
+                       <option value="enAttente">En attente</option>
+                     <option value="enCours">En cours</option>
+                     <option value="urgent">Urgente</option>
+                    <option value="terminee">Terminée</option>
+                    <option value="annulee">Annulée</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priorite">Priorité</label>
+                    <select id="priorite" name="priorite">
+                        <option value="importante">Importante</option>
+                     <option value="moyenne">Moyenne</option>
+                     <option value="peuImportante">Peu importante</option>
+                    <option value="optionnelle">Optionnelle</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie" name="categorie">
+                       <option value="travail">Travail</option>
+                          <option value="maison">Maison</option>
+                          <option value="etudes">Etudes</option>
+                        <option value="loisirs">Loisirs</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulte">Difficulté</label>
+                    <select id="difficulte" name="difficulte">
+                    
+                        <option value="facile">Facile</option>
+                        <option value="moyenne">Moyenne</option>
+                        <option value="difficile">Difficile</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Créer la tâche</button>
+        </form>
+
+        <footer>
+             <p>© 2025 SYNVA M2. Créé par Charlie DRANEBOIS, Daria KOROTAEVA, Islem OUESLATI et Oumaima SARIM</p>
+        </footer>
+    </div>
+</body>
+</html>
+
