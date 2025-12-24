@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Tâche</title>
+    <link rel="stylesheet" href="2B_3A_template-literals_styles.css">
+    <script>
+        // Variables JavaScript avec données JSON
+        let listeTaches = [
+        {
+                "idTache": 1,
+                "libelle": "Réviser le cours de JavaScript",
+                "description": "Revoir les concepts de base et faire les exercices",
+                "dateCreation": "2024-01-15",
+                "dateEcheance": "2024-01-20",
+                "localisation": "A distance",
+                "idStatut": 2,
+                "idPriorite": 2,
+                "idCategorie": 3,
+                "idDifficulte": 3
+        },
+        {
+                "idTache": 2,
+                "libelle": "Faire les courses",
+                "description": "Acheter les ingrédients pour le dîner de demain",
+                "dateCreation": "2024-01-16",
+                "dateEcheance": "2024-01-17",
+                "localisation": "Au marché",
+                "idStatut": 1,
+                "idPriorite": 3,
+                "idCategorie": 2,
+                "idDifficulte": 1
+        },
+        {
+                "idTache": 3,
+                "libelle": "Préparer présentation projet",
+                "description": "Créer les slides et répéter la présentation",
+                "dateCreation": "2024-01-14",
+                "dateEcheance": "2024-01-22",
+                "localisation": "Studium",
+                "idStatut": 2,
+                "idPriorite": 1,
+                "idCategorie": 1,
+                "idDifficulte": 4
+        }
+];
+        
+        let listePriorites = [
+        {
+                "idPriorite": 1,
+                "priorite": "Importante"
+        },
+        {
+                "idPriorite": 2,
+                "priorite": "Moyenne"
+        },
+        {
+                "idPriorite": 3,
+                "priorite": "Peu importante"
+        },
+        {
+                "idPriorite": 4,
+                "priorite": "Optionnelle"
+        }
+];
+        
+        let listeStatuts = [
+        {
+                "idStatut": 1,
+                "statut": "En attente"
+        },
+        {
+                "idStatut": 2,
+                "statut": "En cours"
+        },
+        {
+                "idStatut": 3,
+                "statut": "Urgent"
+        },
+        {
+                "idStatut": 4,
+                "statut": "Terminée"
+        },
+        {
+                "idStatut": 5,
+                "statut": "Annulée"
+        }
+];
+        
+        let listeCategories = [
+        {
+                "idCategorie": 1,
+                "categorie": "Travail"
+        },
+        {
+                "idCategorie": 2,
+                "categorie": "Maison"
+        },
+        {
+                "idCategorie": 3,
+                "categorie": "Études"
+        },
+        {
+                "idCategorie": 4,
+                "categorie": "Loisirs"
+        }
+];
+        
+        let listeDifficultes = [
+        {
+                "idDifficulte": 1,
+                "difficulte": "Facile"
+        },
+        {
+                "idDifficulte": 2,
+                "difficulte": "Moyenne"
+        },
+        {
+                "idDifficulte": 3,
+                "difficulte": "Difficile"
+        },
+];
+        
+        // Affichage dans la console
+        console.log("=== DONNÉES TO-DO LIST ===");
+        console.log("Tâches:", listeTaches);
+        console.log("Priorités:", listePriorites);
+        console.log("Statuts:", listeStatuts);
+        console.log("Catégories:", listeCategories);
+        console.log("Difficulte:", listeDifficultes);
+
+        // Permet d'exécuter la fonction uniquement lorsque tout le code est chargé ==> sinon erreur
+        document.onreadystatechange = function () {
+                if (document.readyState === "complete"){
+                        dynamicWriting();
+                }
+        };
+                
+        function dynamicWriting(){
+            listeStatuts.forEach(function(item, index){
+                var option=`<option value="${item.idStatut}">${item.statut}</option>`;
+                    document.getElementById("statut").insertAdjacentHTML('beforeend',option);
+            });
+            
+            listePriorites.forEach(function(item, index){
+                var option=`<option value="${item.idPriorite}">${item.priorite}</option>`;
+                    document.getElementById("priorite").insertAdjacentHTML('beforeend',option);
+            });
+            
+            listeCategories.forEach (function (item, index) {
+                var option = `<option value="${item.idCategorie}">${item.categorie}</option>`;
+                document.getElementById("categorie").insertAdjacentHTML('beforeend', option);
+            });
+            
+            listeDifficultes.forEach (function(item, index){
+                var option= `<option value="${item.idDifficulte}">${item.difficulte}</option>`;
+                document.getElementById("difficulte").insertAdjacentHTML('beforeend', option);
+            });
+        };
+
+    function saveTask() {
+
+    // 1) Vérification manuelle du formulaire (car type="button")
+    const form = document.querySelector("form");
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    console.log("Formulaire valide → Début de saveTask()");
+
+
+    let nomTache = document.getElementById("nom-tache").value;
+    let dateCreation = document.getElementById("date-debut").value;
+    let dateEcheance = document.getElementById("date-fin").value;
+    let localisation = document.getElementById("lieu").value;
+    let description = document.getElementById("description").value;
+
+    let idStatut = document.getElementById("statut").value;
+    let idPriorite = document.getElementById("priorite").value;
+    let idCategorie = document.getElementById("categorie").value;
+    let idDifficulte = document.getElementById("difficulte").value;
+
+    console.log("Lecture des champs terminée :");
+    console.log(nomTache, dateCreation, dateEcheance, localisation, description, idStatut, idPriorite, idCategorie, idDifficulte);
+
+
+    let data = localStorage.getItem("listeTaches");
+    console.log("Data brute récupérée du localStorage :", data);
+
+    let listeTaches = [];
+
+    // Si la clé existe déjà, on parse 
+    if (data !== null) {
+        listeTaches = JSON.parse(data);
+        console.log("JSON.parse → listeTaches existante :", listeTaches);
+    } else {
+        console.log("Aucune tâche existante, création d'un nouveau tableau.");
+    }
+
+
+    // 4) Déterminer le nouvel id (similaire à un auto-increment)
+    let newId = listeTaches.length + 1;
+    console.log("Nouvel ID calculé :", newId);
+
+
+    // 5) Création de l'objet JSON 
+    let newTask = {
+        "idTache": newId,
+        "libelle": nomTache,
+        "description": description,
+        "dateCreation": dateCreation,
+        "dateEcheance": dateEcheance,
+        "localisation": localisation,
+        "idStatut": idStatut,
+        "idPriorite": idPriorite,
+        "idCategorie": idCategorie,
+        "idDifficulte": idDifficulte
+    };
+
+    console.log("Nouvelle tâche créée :", newTask);
+
+
+    // 6) Ajout au tableau
+    listeTaches.push(newTask);
+    console.log("Nouvelle liste de tâches :", listeTaches);
+
+
+    // 7) stringify + setItem 
+    let listeTachesString = JSON.stringify(listeTaches);
+    console.log("Stringify →", typeof listeTachesString, listeTachesString);
+
+    localStorage.setItem("listeTaches", listeTachesString);
+    console.log("localStorage mis à jour !");
+
+
+    // 8) Réinitialiser le formulaire 
+    form.reset();
+    console.log("Formulaire réinitialisé.");
+}
+
+
+    function retour(){
+        document.getElementById('backButton').addEventListener('click', () => {
+                location.href="https://ch.dranebois.worldlite.fr/M2/web_todo/3C(1).html";
+            });
+    }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Ma To Do Liste ✨ </h1>
+            <p class="subtitle">Organisez votre journée avec style</p>
+        </header>
+
+         
+        
+        <form>
+            <div class="form-group">
+                <label for="nom-tache">Nom de la tâche</label>
+                <input type="text" id="nom-tache" name="nom-tache" placeholder="Ex: Réunion d'équipe" required>
+            </div>
+
+             
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date-debut">Date de création</label>
+                    <input type="date" id="date-debut" name="date-debut" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date-fin">Date d'échéance</label>
+                    <input type="date" id="date-fin" name="date-fin" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="lieu">Lieu</label>
+                <input type="text" id="lieu" name="lieu" placeholder="Ex: Bureau, Maison, En ligne">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Décrivez votre tâche en détail..."></textarea>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="statut">Statut</label>
+                    <select id="statut" name="statut" required>
+                        <option value="">-- Choisir --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priorite">Priorité</label>
+                    <select id="priorite" name="priorite" required>
+                        <option value="">-- Choisir --</option>
+                    </select>
+                </div>
+            </div>
+
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie" name="categorie" required>
+                        <option value="">--Choisir--</option>
+                    </select>
+ 
+                </div>
+
+                <div class="form-group">
+                    <label for="difficulte">Difficulté</label>
+                    <select id="difficulte" name="difficulte" required>
+                        <option value="">--Choisir--</option>
+                    </select>
+                </div>
+            </div>
+
+          <button type="button" onclick="saveTask()">Créer la tâche</button>
+          <button id="backButton" type="button" onclick="retour()">Annuler</button>
+        </form>
+
+        <footer>
+             <p>© 2025 SYNVA M2. Créé par Charlie DRANEBOIS, Daria KOROTAEVA, Islem OUESLATI et Oumaima SARIM</p>
+        </footer>
+    </div>
+</body>
+</html>
