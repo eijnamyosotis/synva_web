@@ -835,4 +835,60 @@ footer {
   #tasksTable td {
     border: 1px solid #ccc;
   }
+  /* ===============================
+   RESPONSIVE PC / TABLETTE / MOBILE
+   (NE TOUCHE PAS AU JS)
+================================ */
+
+/* Conteneur principal : largeur PC */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
+
+/* Vue cartes : grille adaptée PC */
+#cardsView {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* ===============================
+   TABLETTE
+================================ */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 95%;
+  }
+
+  #cardsView {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+
+  /* Table cachée sur mobile */
+  #tableView {
+    display: none !important;
+  }
+
+  /* Cartes sur 1 colonne */
+  #cardsView {
+    grid-template-columns: 1fr;
+  }
+
+  /* Boutons plus lisibles */
+  button {
+    width: 100%;
+  }
+}
+}
+
