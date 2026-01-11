@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Application de gestion de tâches - To-Do List avec filtres et suivi de statut">
+  <title>Ma To-Do Liste - SYNVA M2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Section formulaire -->
+  <div id="formSection" class="container">
+    <header>
+      <h1>🌟 Ma To-Do Liste 🌟</h1>
+      <p class="subtitle">Organisez votre journée avec style !</p>
+    </header>
+
+    <form id="taskForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="libelle">Libellé de la tâche *</label>
+          <input type="text" id="libelle" name="libelle" placeholder="Ex: Préparer la présentation" required>
+        </div>
+
+        <div class="form-group">
+          <label for="priorite">Priorité *</label>
+          <select id="priorite" name="priorite" required>
+            <option value="" disabled selected>Choisir une priorité</option>
+            <option value="1">Urgente</option>
+            <option value="2">Haute</option>
+            <option value="3">Normale</option>
+            <option value="4">Basse</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="statut">Statut *</label>
+          <select id="statut" name="statut" required>
+            <option value="" disabled selected>Choisir un statut</option>
+            <option value="1">En attente</option>
+            <option value="2">En cours</option>
+            <option value="3">Bloquée</option>
+            <option value="4">Terminée</option>
+            <option value="5">Annulée</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="categorie">Catégorie *</label>
+          <select id="categorie" name="categorie" required>
+            <option value="" disabled selected>Choisir une catégorie</option>
+            <option value="1">Personnel</option>
+            <option value="2">Professionnel</option>
+            <option value="3">Domestique</option>
+            <option value="5">Études</option>
+            <option value="4">Autre</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="difficulte">Difficulté *</label>
+          <select id="difficulte" name="difficulte" required>
+            <option value="" disabled selected>Choisir une difficulté</option>
+            <option value="1">Facile</option>
+            <option value="2">Moyenne</option>
+            <option value="3">Difficile</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="localisation">Localisation</label>
+          <input type="text" id="localisation" name="localisation" placeholder="Ex: Bureau, Maison">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateCreation">Date de création *</label>
+          <input type="date" id="dateCreation" name="dateCreation" required>
+        </div>
+
+        <div class="form-group">
+          <label for="dateEcheance">Date d'échéance *</label>
+          <input type="date" id="dateEcheance" name="dateEcheance" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Décrivez votre tâche en détails..."></textarea>
+      </div>
+
+      <button type="submit">Enregistrer la tâche</button>
+    </form>
+
+    <!-- Bouton pour voir les tâches -->
+    <div class="navigation-section">
+      <button type="button" id="btnViewTasks" class="navigation-btn">Voir mes tâches</button>
+    </div>
+
+    <footer>
+      <p>© 2025 SYNVA M2 - Créé par Charlie DRANEBOIS, Daria KOROTAEVA, Islem OUESLATI et Oumaima SARIM</p>
+    </footer>
+  </div>
+
+  <!-- Section récapitulatif des tâches -->
+  <div id="tasksSection" class="container" style="display: none;">
+    <header>
+      <h1>🌟 Mes Tâches 🌟</h1>
+      <p class="subtitle">Récapitulatif de vos tâches</p>
+    </header>
+
+    <!-- Bouton pour retourner au formulaire -->
+    <div class="navigation-section">
+      <button type="button" id="btnBackToForm" class="navigation-btn">Ajouter une tâche</button>
+    </div>
+
+    <!-- Boutons pour basculer entre vue tableau et cartes -->
+    <div class="view-toggle">
+      <button type="button" id="btnTableView" class="view-btn active">Vue Tableau</button>
+      <button type="button" id="btnCardsView" class="view-btn">Vue Cartes</button>
+    </div>
+
+    <div class="filter-buttons">
+      <button type="button" id="btnShowActive" class="filter-btn active">Tâches actives</button>
+      <button type="button" id="btnShowCompleted" class="filter-btn">Tâches terminées</button>
+      <button type="button" id="btnShowAll" class="filter-btn">Toutes les tâches</button>
+    </div>
+
+    <div class="advanced-filters">
+      <h2 class="filters-title">Mes filtres</h2>
+      
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="filterPriority">Filtrer par priorité:</label>
+          <select id="filterPriority">
+            <option value="">Toutes les priorités</option>
+            <option value="1">Urgente</option>
+            <option value="2">Haute</option>
+            <option value="3">Normale</option>
+            <option value="4">Basse</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterCategory">Filtrer par catégorie:</label>
+          <select id="filterCategory">
+            <option value="">Toutes les catégories</option>
+            <option value="1">Personnel</option>
+            <option value="2">Professionnel</option>
+            <option value="3">Domestique</option>
+            <option value="5">Études</option>
+            <option value="4">Autre</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortBy">Trier par:</label>
+          <select id="sortBy">
+            <option value="dateCreation">Date de création</option>
+            <option value="dateEcheance">Date d'échéance</option>
+            <option value="priorite">Priorité</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortOrder">Ordre:</label>
+          <select id="sortOrder">
+            <option value="desc">Décroissant</option>
+            <option value="asc">Croissant</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="date-filter">
+        <h3 class="date-filter-title">Filtrer par plage de dates d'échéance</h3>
+        <div class="date-inputs">
+          <div class="filter-group">
+            <label for="filterDateStart">Date de début:</label>
+            <input type="date" id="filterDateStart">
+          </div>
+          <div class="filter-group">
+            <label for="filterDateEnd">Date de fin:</label>
+            <input type="date" id="filterDateEnd">
+          </div>
+          <button type="button" id="btnResetFilters" class="reset-btn">Réinitialiser les filtres</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vue tableau -->
+    <div id="tableView" class="table-container">
+      <table id="tasksTable">
+        <thead>
+          <tr>
+            <th>Libellé</th>
+            <th>Priorité</th>
+            <th>Statut</th>
+            <th>Catégorie</th>
+            <th>Difficulté</th>
+            <th>Date création</th>
+            <th>Date échéance</th>
+            <th>Localisation</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tasksTableBody">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Vue cartes -->
+    <div id="cardsView" class="tasks-grid" style="display: none;">
+    </div>
+
+    <footer>
+      <p>© 2025 SYNVA M2 - Créé par Charlie DRANEBOIS, Daria KOROTAEVA, Islem OUESLATI et Oumaima SARIM</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
